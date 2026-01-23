@@ -1,10 +1,11 @@
 package com.jayzebra.surveys.domain.port.input;
 
-// SurveyUseCase.java
+/**
+ * Input port
+ **/
 import com.jayzebra.surveys.adapter.output.entity.Survey;
 import com.jayzebra.surveys.domain.dto.SurveyCreateDto;
 import com.jayzebra.surveys.domain.dto.SurveyResponseCreateDto;
-
 import java.util.List;
 
 public interface SurveyUseCase {

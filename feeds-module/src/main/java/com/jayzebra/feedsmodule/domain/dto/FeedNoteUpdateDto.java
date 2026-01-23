@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FeedNoteUpdateDto {
+
+    //Validation to ensure message shouldn't be empty
     @NotBlank(message = "Message cannot be null or blank.")
     private String message;
 }

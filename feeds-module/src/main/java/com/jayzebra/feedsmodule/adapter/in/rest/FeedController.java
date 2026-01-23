@@ -3,32 +3,37 @@ package com.jayzebra.feedsmodule.adapter.in.rest;
 import com.jayzebra.feedsmodule.domain.dto.FeedCreateRequestDto;
 import com.jayzebra.feedsmodule.domain.dto.FeedResponseDto;
 import com.jayzebra.feedsmodule.domain.dto.FeedUpdateRequestDto;
-import com.jayzebra.feedsmodule.domain.model.Feed;
 import com.jayzebra.feedsmodule.domain.port.input.CreateFeedUseCase;
 import com.jayzebra.feedsmodule.domain.port.input.DeleteFeedUseCase;
 import com.jayzebra.feedsmodule.domain.port.input.GetFeedUseCase;
 import com.jayzebra.feedsmodule.domain.port.input.UpdateFeedUseCase;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
+//Controller to manage all the operations related to feed
 @RestController
 @RequestMapping("/feeds")
+//Here we name our controller
+@Tag(name="Feeds")
 public class FeedController {
+    //input port to create feed
     private final CreateFeedUseCase createFeedUseCase;
+    //input port to get the feed
     private final GetFeedUseCase getFeedUseCase;
-    private final ModelMapper modelMapper;
+    //input port to delete the feed
     private final DeleteFeedUseCase deleteFeedUseCase;
+    //input port to update the feed
     private final UpdateFeedUseCase updateFeedUseCase;
+
+    //Constructor to inject dependency with input ports
     public FeedController(CreateFeedUseCase createFeedUseCase, GetFeedUseCase getFeedUseCase, ModelMapper modelMapper, DeleteFeedUseCase deleteFeedUseCase, UpdateFeedUseCase updateFeedUseCase) {
         this.createFeedUseCase = createFeedUseCase;
         this.getFeedUseCase = getFeedUseCase;
-        this.modelMapper = modelMapper;
         this.deleteFeedUseCase = deleteFeedUseCase;
         this.updateFeedUseCase = updateFeedUseCase;
     }
@@ -36,6 +41,7 @@ public class FeedController {
     //Function to get all the feeds
     @GetMapping
     public ResponseEntity<List<FeedResponseDto>> getAllFeeds(){
+        //returning the value come from input port
         return ResponseEntity.ok(getFeedUseCase.getAllFeeds());
     }
 
@@ -47,7 +53,8 @@ public class FeedController {
 
     //Function to create new feed
     @PostMapping
-    public ResponseEntity<Void> createFeed(@RequestBody FeedCreateRequestDto createRequestDto){
+    public ResponseEntity<Void> createFeed(@RequestBody @Valid FeedCreateRequestDto createRequestDto){
+        //Here we call the input port function to create feed
         createFeedUseCase.createFeed(createRequestDto);
         return ResponseEntity.noContent().build();
     }
@@ -55,17 +62,16 @@ public class FeedController {
     //Function to delete feed
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteFeed(@PathVariable UUID id){
+        //Here we call the input port function to delete feed
         deleteFeedUseCase.deleteFeed(id);
        return ResponseEntity.noContent().build();
     }
 
     //Function for Updating feed;
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updateFeed(@PathVariable UUID id, @RequestBody FeedUpdateRequestDto feedUpdateRequestDto){
+    public ResponseEntity<Void> updateFeed(@PathVariable UUID id, @RequestBody @Valid FeedUpdateRequestDto feedUpdateRequestDto){
+        //Here we call the input port function to update feed
         updateFeedUseCase.updateFeed(id,feedUpdateRequestDto);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

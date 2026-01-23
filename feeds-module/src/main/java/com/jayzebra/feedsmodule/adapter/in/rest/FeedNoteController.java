@@ -2,8 +2,10 @@ package com.jayzebra.feedsmodule.adapter.in.rest;
 
 import com.jayzebra.feedsmodule.domain.dto.FeedNoteCreateRequestdto;
 import com.jayzebra.feedsmodule.domain.dto.FeedNoteResponseDto;
+import com.jayzebra.feedsmodule.domain.dto.FeedNoteUpdateDto;
 import com.jayzebra.feedsmodule.domain.model.FeedNote;
 import com.jayzebra.feedsmodule.domain.port.input.*;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/feeds/{feedId}/notes")
+@Tag(name = "FeedNotes")
 public class FeedNoteController {
     private final CreateFeedNoteUseCase createFeedNoteUseCase;
     private final DeleteFeedNoteUseCase deleteFeedNoteUseCase;
@@ -44,7 +47,7 @@ public class FeedNoteController {
     public ResponseEntity<Void> updateNote(
             @PathVariable UUID feedId,
             @PathVariable UUID noteId,
-            @Valid @RequestBody FeedNoteCreateRequestdto requestDto) {
+            @Valid @RequestBody FeedNoteUpdateDto requestDto) {
         updateFeedNoteUseCase.updateFeedNote(feedId, noteId, requestDto.getMessage());
         return ResponseEntity.noContent().build();
     }

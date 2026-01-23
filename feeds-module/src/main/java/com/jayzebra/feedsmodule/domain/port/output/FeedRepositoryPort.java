@@ -3,14 +3,14 @@ package com.jayzebra.feedsmodule.domain.port.output;
 import com.jayzebra.feedsmodule.domain.dto.FeedCreateRequestDto;
 import com.jayzebra.feedsmodule.domain.dto.FeedResponseDto;
 import com.jayzebra.feedsmodule.domain.dto.FeedUpdateRequestDto;
-import com.jayzebra.feedsmodule.domain.model.Feed;
 import org.springframework.modulith.NamedInterface;
-
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Output port
+ * Implementation is in output adapter
+ **/
 @NamedInterface
 public interface FeedRepositoryPort {
 

@@ -6,11 +6,12 @@ import com.jayzebra.surveys.domain.dto.SurveyCreateDto;
 import com.jayzebra.surveys.domain.dto.SurveyResponseCreateDto;
 import com.jayzebra.surveys.domain.port.input.SurveyUseCase;
 import com.jayzebra.surveys.domain.port.output.SurveyRepositoryPort;
-import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ Service - Main logic
+ **/
 public class SurveyService implements SurveyUseCase {
 
     private final SurveyRepositoryPort surveyRepositoryPort;
@@ -19,6 +20,7 @@ public class SurveyService implements SurveyUseCase {
         this.surveyRepositoryPort = surveyRepositoryPort;
     }
 
+    //Function to create new service
     @Override
     public Survey createSurvey(SurveyCreateDto surveyCreateDto) {
         Survey survey = new Survey();
@@ -28,6 +30,7 @@ public class SurveyService implements SurveyUseCase {
         return surveyRepositoryPort.saveSurvey(survey);
     }
 
+    //Function to implement submit survey response
     @Override
     public void submitSurveyResponse(String surveyId, SurveyResponseCreateDto responseDto) {
         // Ensure the survey exists before accepting a response
@@ -41,6 +44,7 @@ public class SurveyService implements SurveyUseCase {
         surveyRepositoryPort.saveSurveyResponse(response);
     }
 
+    //Function to list all surveys
     @Override
     public List<Survey> listSurveys() {
         return surveyRepositoryPort.findAllSurveys();
