@@ -17,12 +17,17 @@ public class RtmOperationService implements RtmOperationUseCase {
         this.rtmOperationRepositoryPort = rtmOperationRepositoryPort;
     }
 
+    //    Processes a request to perform a rtm operation --> It creates a new rtmOperationEntity, populates it with data from the request, sets its initial status, and saves it.
+
     @Override
     public void performRtmOperation(RtmOperationRequestDto requestDto) {
         RTMEntity operation = new RTMEntity();
         operation.setId(UUID.randomUUID().toString());
-    operation.setOperation(RTMEntity.RtmOperationType.valueOf(requestDto.getOperation().name()));
+        // The operation type is mapped from the DTO's enum to the entity's enum.
+        operation.setOperation(RTMEntity.RtmOperationType.valueOf(requestDto.getOperation().name()));
+        // The payload is copied from the DTO.
         operation.setPayload(requestDto.getPayload());
+        // The initial status of the operation is set to ACCEPTED
         operation.setStatus(RTMEntity.OperationStatus.ACCEPTED); // Set initial status
         operation.setCreatedAt(Instant.now());
 

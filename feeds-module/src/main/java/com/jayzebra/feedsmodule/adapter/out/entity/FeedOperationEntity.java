@@ -14,23 +14,28 @@ public class FeedOperationEntity {
     @Id
     private String id;
 
+    // Persist the enum by its name (e.g., "CLAIM", "COMPLETE") instead of by its numeric position
     @Enumerated(EnumType.STRING)
     private FeedOperationType operation;
 
+    //This map is converted to a JSON string for database storage using the {@link FeedsJsonToMapConverter}.
     @Convert(converter = FeedsJsonToMapConverter.class)
 
+    // A TEXT column is used to support potentially large JSON payloads.
     @Column(columnDefinition = "TEXT")
     private Map<String, Object> payload;
 
+//  ensures database values remain stable even if the enum's declaration order changes.
     @Enumerated(EnumType.STRING)
     private FeedOperationStatus status;
 
+    // Automatically set on entity creation and is immutable afterward.
     @CreationTimestamp
     @Column(nullable = false,updatable = false)
     private OffsetDateTime createdAt;
 
 
-    //Getters and Setters
+    //Getters and Setters for all attributes of table
     public String getId() {
         return id;
     }
@@ -72,10 +77,12 @@ public class FeedOperationEntity {
     }
 
 
+    //enum class for operation type
     public enum FeedOperationType{
         CLAIM, REASSIGN, ACKNOWLEDGE, COMPLETE, ESCALATE
     }
 
+    //enum class for operation status
     public enum FeedOperationStatus{
         ACCEPTED, PROCESSING, COMPLETED, FAILED
     }

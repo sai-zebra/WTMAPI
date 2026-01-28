@@ -57,7 +57,7 @@ public class FeedRepositoryAdapter implements FeedRepositoryPort {
     //Function to get feed by id
     @Override
     public FeedResponseDto getFeedById(UUID feedId) {
-        // here we fetch the feed by id which is a entity throw exception id feed nt found
+        // here we fetch the feed by id which is a entity throw exception id feed not found
         FeedEntity feed = feedRepository.findById(feedId).orElseThrow(()-> new ResourceNotFoundException("Feed not found"));
         //map this entity to dto and return
         return modelMapper.map(feed,FeedResponseDto.class);

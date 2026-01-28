@@ -19,12 +19,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/feeds/{feedId}/notes")
 @Tag(name = "FeedNotes")
 public class FeedNoteController {
+    //input port to create the feednote
     private final CreateFeedNoteUseCase createFeedNoteUseCase;
+    //input port to delete all the feednotes related to given feed
     private final DeleteFeedNoteUseCase deleteFeedNoteUseCase;
+    //input port to get all the feednotes
     private final GetFeedNoteUseCase getFeedNoteUseCase;
+    //input port to update the feednote given feedid and noteid
     private final UpdateFeedNoteUseCase updateFeedNoteUseCase;
     private final ModelMapper modelMapper;
 
+    //Constructor to inject dependency with input ports
     public FeedNoteController(CreateFeedNoteUseCase createFeedNoteUseCase, DeleteFeedNoteUseCase deleteFeedNoteUseCase, GetFeedNoteUseCase getFeedNoteUseCase, UpdateFeedNoteUseCase updateFeedNoteUseCase, ModelMapper modelMapper) {
         this.createFeedNoteUseCase = createFeedNoteUseCase;
         this.deleteFeedNoteUseCase = deleteFeedNoteUseCase;
@@ -33,6 +38,7 @@ public class FeedNoteController {
         this.modelMapper = modelMapper;
     }
 
+    //function to create feednote
     @PostMapping
     public ResponseEntity<FeedNoteResponseDto> createNote(
             @PathVariable UUID feedId,
@@ -43,6 +49,7 @@ public class FeedNoteController {
         return ResponseEntity.status(201).body(responseDto);
     }
 
+    //function to partially update the feednote
     @PatchMapping("/{noteId}")
     public ResponseEntity<Void> updateNote(
             @PathVariable UUID feedId,
@@ -52,6 +59,7 @@ public class FeedNoteController {
         return ResponseEntity.noContent().build();
     }
 
+    //function to get list pf feednotes corresponds to particular feedid
     @GetMapping
     public ResponseEntity<List<FeedNoteResponseDto>> getNotesForFeed(@PathVariable UUID feedId) {
         List<FeedNote> notes = getFeedNoteUseCase.getNotesForFeed(feedId);
@@ -61,6 +69,7 @@ public class FeedNoteController {
         return ResponseEntity.ok(responseDtos);
     }
 
+    //function to delete feednote
     @DeleteMapping("/{noteId}")
     public ResponseEntity<Void> deleteNote(
             @PathVariable UUID feedId,

@@ -8,6 +8,11 @@ import lombok.ToString;
 
 import java.time.OffsetDateTime;
 
+/**
+ * DTO for the POST /feednotes request body.
+ * Based on the FeedNoteCreate schema in the OpenAPI specification, using Lombok.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

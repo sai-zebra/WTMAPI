@@ -5,5 +5,6 @@ import org.springframework.modulith.NamedInterface;
 
 @NamedInterface
 public interface FeedOperationRepositoryPort {
+    //to save the operation type in DB
     FeedOperationEntity save(FeedOperationEntity feedOperation);
 }

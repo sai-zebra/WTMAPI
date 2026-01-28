@@ -5,7 +5,7 @@ import com.jayzebra.feedsmodule.domain.model.FeedNote;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
+//input port for listing all feedNotes
 public interface GetFeedNoteUseCase {
 
     List<FeedNote> getNotesForFeed(UUID feedId);

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "FeedOperations")
 public class FeedOperationController {
 
+    //input port to create feedoperation
     private final FeedOperationUseCase feedOperationUseCase;
 
+    //constructor to inject dependency with input ports
     public FeedOperationController(FeedOperationUseCase feedOperationUseCase) {
         this.feedOperationUseCase = feedOperationUseCase;
     }

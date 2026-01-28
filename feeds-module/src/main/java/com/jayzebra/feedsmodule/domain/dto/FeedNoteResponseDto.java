@@ -7,6 +7,11 @@ import lombok.NoArgsConstructor;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+/**
+ * DTO representing  FeedNote list in API responses.
+ * Based on the FeedNote schema in the OpenAPI specification, using Lombok.
+ */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

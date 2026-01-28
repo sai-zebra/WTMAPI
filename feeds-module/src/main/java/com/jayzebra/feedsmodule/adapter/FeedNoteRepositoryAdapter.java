@@ -16,6 +16,11 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * Output adapter
+ * implementation of all methods in output port and connected with DB
+ **/
+
 @Repository
 public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
     private final FeedNoteRepository feedNoteRepository;
@@ -27,6 +32,7 @@ public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
         this.modelMapper = modelMapper;
     }
 
+    //function to save feedNote in DB
     @Override
     public FeedNote save(FeedNote feedNote) {
         // --- MANUAL MAPPING: DOMAIN -> ENTITY ---
@@ -54,6 +60,7 @@ public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
         );
     }
 
+    //function to find the feedNotes correspond to particular noteId
     @Override
     public Optional<FeedNote> findById(UUID noteId) {
         return feedNoteRepository.findById(noteId)
@@ -66,6 +73,7 @@ public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
                 ));
     }
 
+    //function to get list of feedNotes
     @Override
     public List<FeedNote> findByFeedId(UUID feedId) {
         return feedNoteRepository.findByFeedId(feedId).stream()
@@ -78,6 +86,8 @@ public class FeedNoteRepositoryAdapter implements FeedNoteRepositoryPort {
                 ))
                 .collect(Collectors.toList());
     }
+
+    //function to delete feedNote
     @Override
     public void deleteById(UUID noteId) {
         feedNoteRepository.deleteById(noteId);

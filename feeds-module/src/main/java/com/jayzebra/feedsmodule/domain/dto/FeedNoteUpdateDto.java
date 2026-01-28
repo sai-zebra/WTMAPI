@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//DTO for requesting feedNote update
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
