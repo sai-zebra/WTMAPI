@@ -7,7 +7,7 @@
         <groupId>com.jayzebra</groupId>
         <artifactId>WTMMyWorkAPI-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
-        <relativePath/> <!-- This tells Maven to look for the parent in the folder above -->
+        <relativePath>../pom.xml</relativePath> <!-- This tells Maven to look for the parent in the folder above -->
     </parent>
 
     <artifactId>application</artifactId>
