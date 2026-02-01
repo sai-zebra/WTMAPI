@@ -5,10 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: 639493421170.dkr.ecr.eu-north-1.amazonaws.com/backend:
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
 
 imagePullSecrets: []
 nameOverride: ""
@@ -31,7 +29,9 @@ podLabels: {}
 podSecurityContext: {}
   # fsGroup: 2000
 
-securityContext: {}
+securityContext:
+  runAsUser: 1001
+  runAsNonRoot: true
   # capabilities:
   #   drop:
   #   - ALL
@@ -40,8 +40,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 80
+  targetPort: 8080
 
 ingress:
   enabled: false
@@ -74,11 +75,11 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8080
 readinessProbe:
   httpGet:
     path: /
-    port: http
+    port: 8080
 
 autoscaling:
   enabled: false
