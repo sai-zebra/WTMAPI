@@ -14,24 +14,26 @@ This project serves as a blueprint for building robust, scalable, and highly mai
 ## 📖 Table of Contents
 
 1.  [**About The Project**](#-about-the-project)
-    *   [Key Features](#key-features)
-2.  [**🏛️ Core Architecture: The Hexagonal Approach**](#️-core-architecture-the-hexagonal-approach)
-    *   [Architectural Principles](#architectural-principles)
-    *   [Project Structure Mapping](#project-structure-mapping)
-3.  [**🛠️ System Design & Engineering Practices**](#️-system-design--engineering-practices)
-    *   [Robust Error Handling Strategy](#robust-error-handling-strategy)
-    *   [Comprehensive Testing Pyramid](#comprehensive-testing-pyramid)
+    *   [Core Capabilities](#-core-capabilities)
+2.  [**🏛️ Core Architecture**](#️-core-architecture)
+    *   [Overall Architecture: The Modular Monolith](#overall-architecture-the-modular-monolith)
+    *   [Module Architecture: The Hexagonal Approach](#module-architecture-the-hexagonal-approach)
+    *   [Project Structure](#-project-structure)
+3.  [**🛠️ System Design & Engineering**](#️-system-design--engineering)
+    *   [Robust Error Handling](#robust-error-handling)
+    *   [Comprehensive Testing Strategy](#comprehensive-testing-strategy)
     *   [Security First Design](#security-first-design)
     *   [Configuration Management](#configuration-management)
     *   [Logging & Observability](#logging--observability)
 4.  [**🚀 Getting Started**](#-getting-started)
     *   [Prerequisites](#prerequisites)
-    *   [Local Setup & Installation](#local-setup--installation)
-5.  [**🏗️ Build & Deployment (CI/CD)**](#️-build--deployment-cicd)
-    *   [Running Local Builds](#running-local-builds)
+    *   [Local Setup](#local-setup)
+5.  [**🏗️ Build, Deployment, & CI/CD**](#️-build-deployment--cicd)
+    *   [Local Builds](#local-builds)
     *   [CI/CD Pipeline Overview](#cicd-pipeline-overview)
-6.  [**📜 API Endpoints & Specification**](#-api-endpoints--specification)
-
+    *   [Deployed Application Access](#deployed-application-access)
+6.  [**📜 API Specification**](#-api-specification)
+    *   [Endpoint Summary](#-api-endpoints-summary)
 
 ---
 
@@ -307,18 +309,19 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ---
 
-## 🏗️ Build & Deployment (CI/CD)
+## 🚀 Deployment
 
-### Running Local Builds
+Our application is containerized using **Docker** and deployed to **Amazon Web Services (AWS)**. The deployment and CI/CD pipeline are managed by **Kubernetes**, which ensures a scalable and resilient infrastructure.
 
-*   **Run all tests (Unit & Integration):**
-    ```sh
-    mvn test
-    ```
-*   **Skip tests and build quickly:**
-    ```sh
-    mvn clean package -DskipTests
-    ```
+### Accessing the Deployed Application
+
+Once the application is deployed, you can access the API documentation and interact with the endpoints through Swagger UI.
+
+*   **Swagger UI Link:** `a2532e2402329463b97c7d8badde469c-1899026621.ap-south-1.elb.amazonaws.com/swagger-ui/index.html`
+*   **Password:** `445fa830-41da-4369-aeac-a3eb2b91d06b`
+
+This interface provides a convenient way to explore and test the API in the deployed environment.
+
 
 
 
