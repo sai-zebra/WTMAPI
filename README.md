@@ -13,29 +13,32 @@ This project serves as a blueprint for building robust, scalable, and highly mai
 
 ## 📖 Table of Contents
 
-1.  [**About The Project**](#-about-the-project)
-    *   [Key Features](#key-features)
-2.  [**🏛️ Core Architecture: The Hexagonal Approach**](#️-core-architecture-the-hexagonal-approach)
-    *   [Architectural Principles](#architectural-principles)
-    *   [Project Structure Mapping](#project-structure-mapping)
-3.  [**🛠️ System Design & Engineering Practices**](#️-system-design--engineering-practices)
-    *   [Robust Error Handling Strategy](#robust-error-handling-strategy)
-    *   [Comprehensive Testing Pyramid](#comprehensive-testing-pyramid)
+1.  [**About The Project**](#about-the-project)
+    *   [Core Capabilities](#core-capabilities)
+2.  [**🏛️ Core Architecture**](#core-architecture)
+    *   [Overall Architecture: The Modular Monolith](#overall-architecture-the-modular-monolith)
+    *   [Module Architecture: The Hexagonal Approach](#module-architecture-the-hexagonal-approach)
+    *   [Project Structure](#project-structure)
+    *   [Workflow Diagram](#workflow-diagram-of-project)
+3.  [**🛠️ System Design & Engineering**](#system-design--engineering-practices)
+    *   [Robust Error Handling](#robust-error-handling-strategy)
+    *   [Comprehensive Testing Strategy](#project-testing-strategy)
     *   [Security First Design](#security-first-design)
     *   [Configuration Management](#configuration-management)
     *   [Logging & Observability](#logging--observability)
-4.  [**🚀 Getting Started**](#-getting-started)
+4.  [**🚀 Getting Started**](#getting-started)
     *   [Prerequisites](#prerequisites)
-    *   [Local Setup & Installation](#local-setup--installation)
-5.  [**🏗️ Build & Deployment (CI/CD)**](#️-build--deployment-cicd)
-    *   [Running Local Builds](#running-local-builds)
+    *   [Local Setup](#local-setup--installation)
+5.  [**🏗️ Build, Deployment, & CI/CD**](#deployment)
+    *   [Local Builds](#running-local-builds)
     *   [CI/CD Pipeline Overview](#cicd-pipeline-overview)
-6.  [**📜 API Endpoints & Specification**](#-api-endpoints--specification)
-
+    *   [Deployed Application Access](#accessing-the-deployed-application)
+6.  [**📜 API Specification**](#api-endpoints--specification)
+    *   [Endpoint Summary](#api-endpoints-summary)
 
 ---
 
-## 📍 About The Project
+##  About The Project
 
 The MyWork API is the primary interface for workforce-facing applications within the Workcloud ecosystem. It empowers employees by giving them access to critical tasks, communication feeds, and performance surveys. The core design goal is to provide a clean, decoupled, and highly maintainable codebase that can evolve over time without accumulating technical debt.
 
@@ -52,8 +55,9 @@ The MyWork API is the primary interface for workforce-facing applications within
 ---
 
 ---
+## Core Architecture
 
-## 🧱 Overall Architecture: The Modular Monolith
+##  Overall Architecture: The Modular Monolith
 
 This project is architected as a **Modular Monolith**. Instead of a single, undifferentiated codebase, the application is partitioned into a set of loosely-coupled modules, where each module represents a distinct business capability (e.g., "User Management", "Feeds", "Surveys").
 
@@ -68,7 +72,7 @@ This approach provides many of the benefits of microservices (like clear boundar
 
 ---
 
-## 🏛️ Module Architecture: The Hexagonal Approach
+##  Module Architecture: The Hexagonal Approach
 
 Within each module described above, we apply the **Hexagonal Architecture** (also known as Ports and Adapters). This pattern places the module's core business logic and domain at its center, completely isolated from external technologies and delivery mechanisms.
 
@@ -83,7 +87,7 @@ This decoupling ensures that each module's core logic can be tested in isolation
 ---
 
 
-## 📁 Project Structure
+##  Project Structure
 
 The directory structure directly reflects both the Modular Monolith and Hexagonal concepts.
 
@@ -136,6 +140,10 @@ WTMMyWorkAPI-parent/
 
 
 ```
+
+## Workflow Diagram Of Project
+![Workflow Diagram of Project](assets/image.png)
+
 ---
 
 ## ✨ What This Service Does
@@ -162,7 +170,7 @@ The API exposes the following core capabilities:
 
 ---
 
-## 🛠️ System Design & Engineering Practices
+## System Design & Engineering Practices
 
 This project emphasizes professional software engineering practices for building resilient and maintainable systems.
 
@@ -186,7 +194,7 @@ Our error handling provides a predictable, consistent experience for API consume
 
 ---
 
-## 🧪 Project Testing Strategy
+##  Project Testing Strategy
 
 Our testing strategy is centered around comprehensive **Unit Testing**, leveraging the clean separation provided by the Hexagonal Architecture. This ensures that the core business logic, the most critical part of our application, is robust, correct, and reliable.
 
@@ -266,7 +274,7 @@ To provide visibility into the application's state, especially for debugging in 
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 Follow these instructions to get a copy of the project up and running on your local machine.
 
@@ -307,22 +315,29 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ---
 
-## 🏗️ Build & Deployment (CI/CD)
+##  Deployment
 
-### Running Local Builds
+Our application is containerized using **Docker** and deployed to **Amazon Web Services (AWS)**. The deployment and CI/CD pipeline are managed by **Kubernetes**, which ensures a scalable and resilient infrastructure.
 
-*   **Run all tests (Unit & Integration):**
+### Accessing the Deployed Application
+
+Once the application is deployed, you can access the API documentation and interact with the endpoints through Swagger UI.
+
+*   **Swagger UI Link:**
     ```sh
-    mvn test
+     a2532e2402329463b97c7d8badde469c-1899026621.ap-south-1.elb.amazonaws.com/swagger-ui/index.html
     ```
-*   **Skip tests and build quickly:**
+*   **Password:** 
     ```sh
-    mvn clean package -DskipTests
+     445fa830-41da-4369-aeac-a3eb2b91d06b
     ```
 
+This interface provides a convenient way to explore and test the API in the deployed environment.
 
 
-## 📜 API Endpoints & Specification
+
+
+##  API Endpoints & Specification
 
 The full API contract is defined using **OpenAPI 3.1.0**. The specification file serves as the single source of truth for all API interactions.
 
@@ -333,7 +348,7 @@ It can also be viewed interactively via Swagger UI at `http://localhost:8080/swa
 
 ---
 
-## 🔌 API Endpoints Summary
+##  API Endpoints Summary
 
 The following table provides a high-level overview of all available endpoints in the Workcloud Task Management API.
 
@@ -371,4 +386,5 @@ The following table provides a high-level overview of all available endpoints in
 | `POST`   | `/sessions/logout`                | Log a user out of their session |
 
 ---
+
 
