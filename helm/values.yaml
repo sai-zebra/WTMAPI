@@ -4,7 +4,7 @@
 
 replicaCount: 1
 
-image: 639493421170.dkr.ecr.eu-north-1.amazonaws.com/backend:2
+image:
   repository: 639493421170.dkr.ecr.eu-north-1.amazonaws.com/backend:
   pullPolicy: IfNotPresent
 
